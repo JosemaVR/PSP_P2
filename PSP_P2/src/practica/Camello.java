@@ -43,11 +43,11 @@ public class Camello implements Runnable, Comparable<Camello> {
 	public String toString() {
 		int fin = (distancia-getRecorrido());
 		if(fin == 0) {
-			return nombre;
+			return getNombre();
 		} else if (fin == 1) {
-			return nombre + " a " + fin + " posición.";
+			return getNombre() + " a " + fin + " posición.";
 		} else {
-			return nombre + " a " + fin + " posiciones";
+			return getNombre() + " a " + fin + " posiciones";
 		}
 	}
 
@@ -55,7 +55,7 @@ public class Camello implements Runnable, Comparable<Camello> {
 		try	{
 			while(finCarrera==false) {
 				Random x = new Random();
-				int y = (int) (x.nextDouble()*2000);
+				int y = (int) (x.nextDouble()*750);
 				Thread.sleep(y);
 				cursoCarrera();
 			}
@@ -75,7 +75,7 @@ public class Camello implements Runnable, Comparable<Camello> {
 			finCarrera = true;
 			System.out.println(" ");
 			System.out.println("¡¡¡" + getNombre() + " finaliza la carrera el 1º!!!");
-			System.out.println("¡¡Ha ganado!¡¡");
+			System.out.println("¡¡¡Ha ganado!!!");
 			System.out.println(" ");
 			System.out.println("El ranking ha quedado del siguiente modo:");
 			orden();
@@ -87,9 +87,9 @@ public class Camello implements Runnable, Comparable<Camello> {
 	
 	private void orden() {
 		Collections.sort(posiciones);
-		System.out.println("1º " + posiciones.get(0));
-		System.out.println("1º " + posiciones.get(1));
-		System.out.println("1º " + posiciones.get(2));
+		for(int i = 0; i<posiciones.size(); i++) {
+			System.out.println((i+1) + "º - " + posiciones.get(i));
+		}
 	}
 
 	private synchronized void tirada() {
